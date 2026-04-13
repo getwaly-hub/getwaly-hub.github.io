@@ -7,46 +7,74 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #0a0a0a; color: #e8e8e8; font-family: Arial, sans-serif; line-height: 1.7; }
-  .container { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
-  h1 { font-size: 2.4rem; color: #fff; margin-bottom: 4px; }
-  .subtitle { color: #B5841A; font-size: 1rem; margin-bottom: 24px; letter-spacing: 1px; }
-  .bio { color: #aaa; font-size: 0.97rem; margin-bottom: 12px; max-width: 620px; }
-  .contact { margin-bottom: 48px; }
-  .contact a { color: #B5841A; text-decoration: none; margin-right: 20px; font-size: 0.9rem; }
-  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 56px; }
-  .metric-card { background: #141414; border: 1px solid #222; border-top: 3px solid #B5841A; padding: 20px 16px; }
-  .metric-number { font-size: 1.8rem; font-weight: bold; color: #B5841A; }
-  .metric-label { font-size: 0.8rem; color: #888; margin-top: 4px; line-height: 1.4; }
-  .section { margin-bottom: 56px; }
-  .section-title { font-size: 0.75rem; letter-spacing: 3px; color: #B5841A; text-transform: uppercase; margin-bottom: 24px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  .before { background: #1a0a0a; border: 1px solid #3a1a1a; padding: 20px; border-radius: 4px; }
-  .after { background: #0a1a0a; border: 1px solid #1a3a1a; padding: 20px; border-radius: 4px; }
-  .col-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
-  .before .col-label { color: #c0392b; }
-  .after .col-label { color: #27ae60; }
-  .col-text { font-size: 0.9rem; color: #ccc; font-style: italic; }
-  .annotations { margin-top: 16px; }
-  .annotation { font-size: 0.88rem; color: #999; padding: 8px 0 8px 16px; border-left: 2px solid #B5841A; margin-bottom: 8px; }
-  .hook-box { background: #111; border: 1px solid #222; padding: 24px; border-radius: 4px; margin-bottom: 20px; }
-  .hook-original { font-size: 1.1rem; color: #fff; font-style: italic; margin-bottom: 20px; }
-  .layer { padding: 10px 0; border-bottom: 1px solid #1a1a1a; font-size: 0.88rem; color: #bbb; }
-  .layer:last-child { border-bottom: none; }
-  .layer strong { color: #B5841A; }
-  .case-grid { display: grid; grid-template-columns: 140px 1fr; gap: 0; }
-  .case-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #B5841A; font-weight: bold; padding: 16px 0; border-bottom: 1px solid #1a1a1a; }
-  .case-content { font-size: 0.9rem; color: #ccc; padding: 16px 0 16px 20px; border-bottom: 1px solid #1a1a1a; }
-  .case-label:last-of-type, .case-content:last-of-type { border-bottom: none; }
-  .outcome-stat { color: #B5841A; font-weight: bold; }
-  .cta { text-align: center; padding: 40px 0 0; border-top: 1px solid #222; }
-  .cta h2 { font-size: 1.2rem; color: #fff; margin-bottom: 12px; }
-  .cta a { display: inline-block; color: #B5841A; text-decoration: none; margin: 0 16px; font-size: 0.9rem; border-bottom: 1px solid #B5841A; padding-bottom: 2px; }
+  .container { max-width: 780px; margin: 0 auto; padding: 64px 24px 80px; }
+
+  /* HEADER */
+  h1 { font-size: 2.6rem; color: #fff; margin-bottom: 6px; letter-spacing: -1px; }
+  .subtitle { color: #B5841A; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
+  .bio { color: #aaa; font-size: 0.95rem; max-width: 640px; margin-bottom: 10px; }
+  .contact { margin-bottom: 56px; }
+  .contact a { color: #B5841A; text-decoration: none; margin-right: 24px; font-size: 0.88rem; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .contact a:hover { border-color: #B5841A; }
+
+  /* METRICS */
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 64px; }
+  .metric-card { background: #111; border: 1px solid #1e1e1e; border-top: 3px solid #B5841A; padding: 22px 18px; }
+  .metric-number { font-size: 1.9rem; font-weight: bold; color: #B5841A; }
+  .metric-label { font-size: 0.78rem; color: #777; margin-top: 6px; line-height: 1.5; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 64px; }
+  .section-label { font-size: 0.7rem; letter-spacing: 3px; color: #B5841A; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-size: 1.25rem; color: #fff; font-weight: bold; margin-bottom: 6px; }
+  .section-desc { font-size: 0.88rem; color: #777; margin-bottom: 28px; font-style: italic; }
+  .divider { border: none; border-top: 1px solid #1a1a1a; margin-bottom: 28px; }
+
+  /* SCRIPT CARDS */
+  .script-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .script-card { background: #111; border: 1px solid #1e1e1e; padding: 24px; border-radius: 2px; }
+  .script-card .tag { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: #B5841A; margin-bottom: 12px; }
+  .script-card .script-text { font-size: 0.88rem; color: #ccc; font-style: italic; line-height: 1.8; white-space: pre-line; }
+  .script-card .highlight { color: #fff; font-weight: bold; font-style: normal; }
+
+  /* BREAKDOWN */
+  .breakdown { background: #0f0f0f; border: 1px solid #1e1e1e; border-left: 3px solid #B5841A; padding: 24px; margin-top: 16px; }
+  .breakdown-title { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #B5841A; margin-bottom: 16px; }
+  .breakdown-item { display: grid; grid-template-columns: 140px 1fr; gap: 0; margin-bottom: 0; }
+  .breakdown-key { font-size: 0.8rem; color: #555; padding: 10px 16px 10px 0; border-bottom: 1px solid #151515; font-weight: bold; }
+  .breakdown-val { font-size: 0.85rem; color: #bbb; padding: 10px 0; border-bottom: 1px solid #151515; }
+  .breakdown-key:last-of-type, .breakdown-val:last-of-type { border-bottom: none; }
+
+  /* LONG-FORM SCRIPT */
+  .longform { background: #0d0d0d; border: 1px solid #1e1e1e; padding: 28px; border-radius: 2px; margin-bottom: 20px; }
+  .longform .script-excerpt { font-size: 0.9rem; color: #bbb; line-height: 1.9; border-left: 2px solid #222; padding-left: 20px; margin-bottom: 20px; font-style: italic; }
+  .longform .script-excerpt em { color: #fff; font-style: normal; font-weight: bold; }
+
+  /* ANNOTATION PILLS */
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .pill { background: #151515; border: 1px solid #252525; color: #999; font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; }
+  .pill.gold { border-color: #B5841A; color: #B5841A; }
+
+  /* RESULTS STRIP */
+  .results-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1a1a1a; margin-top: 20px; }
+  .result-cell { background: #0d0d0d; padding: 16px 20px; }
+  .result-num { font-size: 1.3rem; font-weight: bold; color: #B5841A; }
+  .result-label { font-size: 0.75rem; color: #666; margin-top: 2px; }
+
+  /* CTA */
+  .cta { text-align: center; padding: 48px 0 0; border-top: 1px solid #1a1a1a; }
+  .cta p { color: #555; font-size: 0.85rem; margin-bottom: 16px; }
+  .cta-links { display: flex; justify-content: center; gap: 32px; }
+  .cta-links a { color: #B5841A; text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid #B5841A; padding-bottom: 2px; }
+
+  /* RESPONSIVE */
   @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
     .metrics { grid-template-columns: 1fr; }
-    .two-col { grid-template-columns: 1fr; }
-    .case-grid { grid-template-columns: 1fr; }
-    .case-label { padding-bottom: 4px; border-bottom: none; }
-    .case-content { padding-left: 0; }
+    .script-grid { grid-template-columns: 1fr; }
+    .breakdown-item { grid-template-columns: 1fr; }
+    .breakdown-key { padding-bottom: 2px; border-bottom: none; color: #B5841A; }
+    .results-strip { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -55,11 +83,13 @@
 
   <!-- HEADER -->
   <h1>Mustafa Waly</h1>
-  <p class="subtitle">CONTENT STRATEGIST · PERFORMANCE COPYWRITER · CREATIVE DIRECTOR</p>
+  <p class="subtitle">Content Strategist · Performance Copywriter · Creative Director</p>
   <p class="bio">I engineer conversion-focused content systems for personal brands and e-commerce in Arabic and English. My framework is built on 5+ years of music production — the same hook construction, pacing, and retention mechanics that scaled my music to 13,900+ Spotify streams drive every piece of copy I produce.</p>
+  <p class="bio" style="margin-top:10px;">Currently directing content strategy and copy at <strong style="color:#fff;">ABZ Content</strong> — Alexandria, Egypt.</p>
   <div class="contact">
     <a href="mailto:getwaly@email.com">getwaly@email.com</a>
     <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
+    <a href="Mustafa_Khalifa_CV.pdf" target="_blank">Download CV</a>
   </div>
 
   <!-- METRICS -->
@@ -70,66 +100,204 @@
     </div>
     <div class="metric-card">
       <div class="metric-number">35%</div>
-      <div class="metric-label">TikTok save-to-like ratio on client content — above platform average</div>
+      <div class="metric-label">TikTok save-to-like ratio on ABZ client content — above platform average</div>
     </div>
     <div class="metric-card">
       <div class="metric-number">15–25%</div>
-      <div class="metric-label">CTR lift on paid social ad copy rewrites for personal brand clients</div>
+      <div class="metric-label">Estimated CTR lift on paid social ad copy rewrites</div>
     </div>
   </div>
 
-  <!-- ASSET 1: BEFORE / AFTER -->
+
+  <!-- ═══════════════════════════════════════════
+       ASSET 01 — PERSONAL BRAND SCRIPTS
+  ════════════════════════════════════════════ -->
   <div class="section">
-    <div class="section-title">Asset 01 — Before / After Hook Rewrite</div>
-    <div class="two-col">
-      <div class="before">
-        <div class="col-label">Before</div>
-        <div class="col-text">[PASTE THE ORIGINAL WEAK CAPTION OR AD HERE]</div>
+    <div class="section-label">Asset 01</div>
+    <div class="section-title">Personal Brand Script — Career Profiling Campaign</div>
+    <div class="section-desc">Client: Shimaa (Career Coach) · Platform: Short-form video · Language: Arabic · ABZ Content</div>
+    <hr class="divider">
+
+    <div class="script-grid">
+      <div class="script-card">
+        <div class="tag">Script A — Variant 1</div>
+        <div class="script-text"><span class="highlight">أصعب إحساس في الشغل
+مش إنك تكون مضغوط.</span>
+أصعب إحساس
+إنك تكون بتجري بكل سرعتك
+بس في الاتجاه الغلط.
+
+سنين بنحاول نغيّر نفسنا
+عشان نليق على مكان.
+بدل ما ندور
+على المكان اللي يليق على طبيعتنا.
+
+الحقيقة إن المشكلة
+مش في قدراتك.
+المشكلة إنك لسه
+ما فهمتش نفسك كفاية.</div>
       </div>
-      <div class="after">
-        <div class="col-label">After</div>
-        <div class="col-text">[PASTE YOUR REWRITTEN VERSION HERE]</div>
+      <div class="script-card">
+        <div class="tag">Script B — Variant 2</div>
+        <div class="script-text"><span class="highlight">عمرك سألت نفسك
+ليه في ناس بتنجح في شغلها كل مرة
+وكأن الموضوع طبيعي بالنسبة لهم؟</span>
+
+الموضوع مش حظ.
+ومش إنهم أذكى.
+الفرق إنهم
+فاهمين نفسهم.
+
+عارفين إيه اللي بيحفزهم
+وإيه اللي بيطفيهم.
+وعارفين يختاروا
+البيئة اللي بتكبرهم.</div>
       </div>
     </div>
-    <div class="annotations">
-      <div class="annotation">Problem: [اشرح المشكلة في الـ original بالإنجليزي]</div>
-      <div class="annotation">Fix: [اشرح الـ fix اللي عملته وليه]</div>
-      <div class="annotation">Expected impact: [إيه الـ behavioral change المتوقع]</div>
+
+    <div class="breakdown">
+      <div class="breakdown-title">Copy Strategy — What Was Done & Why</div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Hook mechanism</div>
+        <div class="breakdown-val">Both scripts open with a pattern interrupt that names a feeling the audience already has but hasn't articulated — triggering immediate identity recognition before any product mention.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Variant A logic</div>
+        <div class="breakdown-val">Opens with contrast: "not pressure — wrong direction." Targets audience who are already working hard but getting nowhere. Reframes the problem from effort to self-knowledge.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Variant B logic</div>
+        <div class="breakdown-val">Opens with a rhetorical question that seeds curiosity and mild envy. Removes luck and intelligence as variables — leaving self-awareness as the only differentiator. Positions the client as the solution to a specific gap.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">CTA structure</div>
+        <div class="breakdown-val">Both close with reframing: not "buy a session" but "you might need a compass, not a new road." Lowers resistance by offering clarity instead of commitment.</div>
+      </div>
+    </div>
+
+    <div class="pills" style="margin-top:16px;">
+      <span class="pill gold">Pattern Interrupt</span>
+      <span class="pill gold">Identity Signal</span>
+      <span class="pill gold">A/B Variant Testing</span>
+      <span class="pill">Arabic Conversion Copy</span>
+      <span class="pill">Personal Brand</span>
+      <span class="pill">Short-Form Video Script</span>
     </div>
   </div>
 
-  <!-- ASSET 2: HOOK BREAKDOWN -->
+
+  <!-- ═══════════════════════════════════════════
+       ASSET 02 — LONG-FORM RETENTION SCRIPT
+  ════════════════════════════════════════════ -->
   <div class="section">
-    <div class="section-title">Asset 02 — Hook Breakdown</div>
-    <div class="hook-box">
-      <div class="hook-original">"[PASTE A HIGH-PERFORMING HOOK HERE — من الـ TikTok بتاع ABZ أو أي content ناجح]"</div>
-      <div class="layer"><strong>Pattern Interrupt:</strong> [اشرح إيه اللي كسر الـ scroll behavior]</div>
-      <div class="layer"><strong>Identity Signal:</strong> [مين اللي حس إن ده بيتكلم عنه]</div>
-      <div class="layer"><strong>Stakes Statement:</strong> [إيه اللي بيكسبه أو بيخسره]</div>
-      <div class="layer"><strong>Open Loop:</strong> [إيه السؤال اللي فضل من غير إجابة]</div>
+    <div class="section-label">Asset 02</div>
+    <div class="section-title">Long-Form Script — Audience Retention Psychology</div>
+    <div class="section-desc">Client: ABZ Content (owned channel) · Platform: YouTube · Language: Arabic</div>
+    <hr class="divider">
+
+    <div class="longform">
+      <div class="script-excerpt">
+<em>اللحظة اللي المشاهد بيسحب فيها الفيديو بتاعك لفوق مش هي اللحظة اللي خد فيها القرار.</em>
+القرار بيتاخد قبلها بثانيتين كاملين.
+الثانيتين دول هما أخطر مساحة زمنية في أي فيديو على يوتيوب.
+
+<em>المشكلة إنك فاكر إن المشاهد بيشوفك كشخص طالع يتكلم معاه.</em>
+الحقيقة هو بيشوفك كمجهود —
+عقله بيعمل حسبة رياضية في جزء من الثانية:
+هل اللي هشوفه هنا يستاهل إني أدفع من انتباهي؟
+</div>
+
+      <div class="breakdown-title" style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:#B5841A;margin-bottom:16px;">Script Architecture — Retention Engineering Applied</div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Opening hook</div>
+        <div class="breakdown-val">Opens with a counterintuitive reframe: the decision to leave happens 2 seconds before the swipe. Creates cognitive dissonance — the viewer thought they were in control. They weren't.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Information gap</div>
+        <div class="breakdown-val">Script deliberately withholds the "3-step system" until deep into the video — using named micro-promises ("the third step is the most dangerous") to sustain forward momentum without revealing the payoff early.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Self-referential structure</div>
+        <div class="breakdown-val">The script teaches retention mechanics while simultaneously applying them — the viewer experiences the framework as they learn it. This meta-layer dramatically increases perceived credibility and watch time.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Pattern interrupt timing</div>
+        <div class="breakdown-val">Breaks introduced every 20–30 seconds via tonal shifts, reframes, and direct audience address — matching the neurological attention reset window studied in behavioral psychology.</div>
+      </div>
+    </div>
+
+    <div class="pills" style="margin-top:16px;">
+      <span class="pill gold">Retention Engineering</span>
+      <span class="pill gold">Information Gap Theory</span>
+      <span class="pill gold">Self-Referential Narrative</span>
+      <span class="pill">Long-Form YouTube Script</span>
+      <span class="pill">Educational Content</span>
+      <span class="pill">Arabic</span>
     </div>
   </div>
 
-  <!-- ASSET 3: CASE STUDY -->
+
+  <!-- ═══════════════════════════════════════════
+       ASSET 03 — PERFORMANCE CASE
+  ════════════════════════════════════════════ -->
   <div class="section">
-    <div class="section-title">Asset 03 — Performance Case · ABZ Content</div>
-    <div class="case-grid">
-      <div class="case-label">Problem</div>
-      <div class="case-content">Client was running personal brand content with generic openers and benefit-first messaging on cold audiences — no hook structure, no awareness-stage differentiation.</div>
-      <div class="case-label">Decision</div>
-      <div class="case-content">Rewrote content and ad copy strategy around intent-matched hooks and a problem–identity–CTA sequence, with separate copy variants for cold, warm, and retargeting audiences.</div>
-      <div class="case-label">Execution</div>
-      <div class="case-content">Restructured caption copy across 3 content pillars. Rewrote paid ad hooks by audience temperature. Built a brief template enforcing the new structure across all future output.</div>
-      <div class="case-label">Outcome</div>
-      <div class="case-content">Top-performing TikTok: <span class="outcome-stat">6,800+ likes · 2,450+ saves · 35% save-to-like ratio.</span> Paid social CTR improved <span class="outcome-stat">15–25%</span> across restructured campaigns. Revision cycles cut by <span class="outcome-stat">30%</span> within first quarter.</div>
+    <div class="section-label">Asset 03</div>
+    <div class="section-title">Performance Case — ABZ Content TikTok</div>
+    <div class="section-desc">Client work · Platform: TikTok · Role: Script + Content Strategy · ABZ Content</div>
+    <hr class="divider">
+
+    <div class="breakdown" style="margin-top:0;">
+      <div class="breakdown-title">Case Breakdown</div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Problem</div>
+        <div class="breakdown-val">Client content was generating views but low save and share rates — indicating audiences were watching passively without perceiving the content as useful or worth returning to.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Decision</div>
+        <div class="breakdown-val">Restructured the script around high-utility information architecture: front-loaded the hook with a counterintuitive claim, embedded actionable frameworks mid-video, and closed with a callback that reinforced retention value.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Execution</div>
+        <div class="breakdown-val">Wrote and directed the content script for the ABZ Content TikTok channel — applying the same pacing and retention mechanics developed through 5+ years of music production to short-form video structure.</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-key">Outcome</div>
+        <div class="breakdown-val">Top-performing video on the channel to date. Save rate signals high-utility content — audiences bookmarking to return, not just consuming passively.</div>
+      </div>
+    </div>
+
+    <div class="results-strip">
+      <div class="result-cell">
+        <div class="result-num">6,800+</div>
+        <div class="result-label">Likes</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-num">2,450+</div>
+        <div class="result-label">Saves — 35% save-to-like ratio</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-num">1,200+</div>
+        <div class="result-label">Shares</div>
+      </div>
+    </div>
+
+    <div class="pills" style="margin-top:16px;">
+      <span class="pill gold">Verified Client Results</span>
+      <span class="pill gold">35% Save-to-Like Ratio</span>
+      <span class="pill">TikTok</span>
+      <span class="pill">Short-Form Script</span>
+      <span class="pill">ABZ Content</span>
     </div>
   </div>
+
 
   <!-- CTA -->
   <div class="cta">
-    <h2>Let's work together</h2>
-    <a href="mailto:getwaly@email.com">getwaly@email.com</a>
-    <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
+    <p>Available for agency roles, freelance strategy, and performance copy engagements.</p>
+    <div class="cta-links">
+      <a href="mailto:getwaly@email.com">getwaly@email.com</a>
+      <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
+    </div>
   </div>
 
 </div>
