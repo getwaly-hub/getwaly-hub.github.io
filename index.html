@@ -3,126 +3,1005 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mustafa Waly — Portfolio</title>
+<title>Mustafa Waly  Content Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #0c0b09;
+    --surface: #131210;
+    --surface2: #1a1916;
+    --gold: #B5841A;
+    --gold-dim: rgba(181,132,26,0.12);
+    --gold-line: rgba(181,132,26,0.25);
+    --text: #e2ddd6;
+    --muted: #6b6560;
+    --muted2: #958f87;
+    --border: #1f1e1b;
+    --border2: #2a2925;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; color: #e8e8e8; font-family: Arial, sans-serif; line-height: 1.7; }
-  .container { max-width: 780px; margin: 0 auto; padding: 64px 24px 80px; }
+  html { scroll-behavior: smooth; }
 
-  /* HEADER */
-  h1 { font-size: 2.6rem; color: #fff; margin-bottom: 6px; letter-spacing: -1px; }
-  .subtitle { color: #B5841A; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
-  .bio { color: #aaa; font-size: 0.95rem; max-width: 640px; margin-bottom: 10px; }
-  .contact { margin-bottom: 56px; }
-  .contact a { color: #B5841A; text-decoration: none; margin-right: 24px; font-size: 0.88rem; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-  .contact a:hover { border-color: #B5841A; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-  /* METRICS */
-  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 64px; }
-  .metric-card { background: #111; border: 1px solid #1e1e1e; border-top: 3px solid #B5841A; padding: 22px 18px; }
-  .metric-number { font-size: 1.9rem; font-weight: bold; color: #B5841A; }
-  .metric-label { font-size: 0.78rem; color: #777; margin-top: 6px; line-height: 1.5; }
+  /* grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
 
-  /* SECTIONS */
-  .section { margin-bottom: 64px; }
-  .section-label { font-size: 0.7rem; letter-spacing: 3px; color: #B5841A; text-transform: uppercase; margin-bottom: 8px; }
-  .section-title { font-size: 1.25rem; color: #fff; font-weight: bold; margin-bottom: 6px; }
-  .section-desc { font-size: 0.88rem; color: #777; margin-bottom: 28px; font-style: italic; }
-  .divider { border: none; border-top: 1px solid #1a1a1a; margin-bottom: 28px; }
+  /* ─── LAYOUT ─── */
+  .wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
 
-  /* SCRIPT CARDS */
-  .script-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  .script-card { background: #111; border: 1px solid #1e1e1e; padding: 24px; border-radius: 2px; }
-  .script-card .tag { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: #B5841A; margin-bottom: 12px; }
-  .script-card .script-text { font-size: 0.88rem; color: #ccc; font-style: italic; line-height: 1.8; white-space: pre-line; }
-  .script-card .highlight { color: #fff; font-weight: bold; font-style: normal; }
+  /* ─── TOP BAR ─── */
+  .topbar {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-  /* BREAKDOWN */
-  .breakdown { background: #0f0f0f; border: 1px solid #1e1e1e; border-left: 3px solid #B5841A; padding: 24px; margin-top: 16px; }
-  .breakdown-title { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #B5841A; margin-bottom: 16px; }
-  .breakdown-item { display: grid; grid-template-columns: 140px 1fr; gap: 0; margin-bottom: 0; }
-  .breakdown-key { font-size: 0.8rem; color: #555; padding: 10px 16px 10px 0; border-bottom: 1px solid #151515; font-weight: bold; }
-  .breakdown-val { font-size: 0.85rem; color: #bbb; padding: 10px 0; border-bottom: 1px solid #151515; }
-  .breakdown-key:last-of-type, .breakdown-val:last-of-type { border-bottom: none; }
+  .topbar-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
 
-  /* LONG-FORM SCRIPT */
-  .longform { background: #0d0d0d; border: 1px solid #1e1e1e; padding: 28px; border-radius: 2px; margin-bottom: 20px; }
-  .longform .script-excerpt { font-size: 0.9rem; color: #bbb; line-height: 1.9; border-left: 2px solid #222; padding-left: 20px; margin-bottom: 20px; font-style: italic; }
-  .longform .script-excerpt em { color: #fff; font-style: normal; font-weight: bold; }
+  .topbar-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
 
-  /* ANNOTATION PILLS */
-  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .pill { background: #151515; border: 1px solid #252525; color: #999; font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; }
-  .pill.gold { border-color: #B5841A; color: #B5841A; }
+  /* ─── HERO ─── */
+  .hero {
+    padding: 96px 0 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
 
-  /* RESULTS STRIP */
-  .results-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1a1a1a; margin-top: 20px; }
-  .result-cell { background: #0d0d0d; padding: 16px 20px; }
-  .result-num { font-size: 1.3rem; font-weight: bold; color: #B5841A; }
-  .result-label { font-size: 0.75rem; color: #666; margin-top: 2px; }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: up 0.7s 0.1s forwards;
+  }
 
-  /* CTA */
-  .cta { text-align: center; padding: 48px 0 0; border-top: 1px solid #1a1a1a; }
-  .cta p { color: #555; font-size: 0.85rem; margin-bottom: 16px; }
-  .cta-links { display: flex; justify-content: center; gap: 32px; }
-  .cta-links a { color: #B5841A; text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid #B5841A; padding-bottom: 2px; }
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
 
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    h1 { font-size: 2rem; }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 9vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: up 0.7s 0.2s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-role {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: up 0.7s 0.3s forwards;
+  }
+
+  .hero-bio {
+    font-family: 'DM Mono', monospace;
+    font-size: 13.5px;
+    color: var(--muted2);
+    max-width: 560px;
+    line-height: 1.85;
+    opacity: 0;
+    animation: up 0.7s 0.4s forwards;
+  }
+
+  .hero-bio strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .hero-links {
+    margin-top: 36px;
+    display: flex;
+    gap: 28px;
+    opacity: 0;
+    animation: up 0.7s 0.5s forwards;
+  }
+
+  .hero-links a {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .hero-links a:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ─── METRICS ─── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric {
+    padding: 40px 28px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric:last-child { border-right: none; }
+
+  .metric::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s;
+  }
+
+  .metric:hover::before { transform: scaleX(1); }
+
+  .metric-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .metric-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .section-header-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .service {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 28px 32px;
+    transition: background 0.25s;
+    position: relative;
+  }
+
+  .service::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.35s;
+  }
+
+  .service:hover { background: var(--surface2); }
+  .service:hover::after { width: 100%; }
+
+  .service-name {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 12.5px;
+    color: var(--muted2);
+    line-height: 1.75;
+  }
+
+  /* ─── CASE STUDY ─── */
+  .case-table {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .case-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-row:last-child { border-bottom: none; }
+
+  .case-key {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: flex-start;
+    font-weight: 500;
+  }
+
+  .case-val {
+    font-size: 13px;
+    color: var(--muted2);
+    padding: 24px 28px;
+    line-height: 1.8;
+  }
+
+  .case-val strong { color: var(--text); font-weight: 500; }
+  .case-val .stat { color: var(--gold); font-weight: 500; }
+
+  /* ─── WORK FILTER ─── */
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.on {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  /* ─── WORK CARDS ─── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .work-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .work-card:hover { background: var(--surface2); }
+
+  .work-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .work-tag {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 2px;
+  }
+
+  .tag-lead { background: rgba(181,132,26,0.12); color: var(--gold); }
+  .tag-yt   { background: rgba(220,50,50,0.1);   color: #e06060; }
+  .tag-car  { background: rgba(90,130,220,0.1);  color: #7a9de0; }
+  .tag-cre  { background: rgba(80,180,120,0.1);  color: #6cbf96; }
+
+  .work-idx {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .work-hook {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .work-preview {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .work-cta {
+    margin-top: 24px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  .work-card:hover .work-cta { color: var(--gold); gap: 14px; }
+
+  /* ─── HOOK BREAKDOWN ─── */
+  .hook-anatomy {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hook-text {
+    background: var(--surface);
+    padding: 32px 32px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hook-quote {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text);
+    position: relative;
+    padding-right: 24px;
+  }
+
+  .hook-quote::before {
+    content: '"';
+    position: absolute;
+    right: 0; top: -4px;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 1;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .hook-layers { }
+
+  .hook-layer {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hook-layer:last-child { border-bottom: none; }
+
+  .hook-layer-key {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  .hook-layer-val {
+    font-size: 12.5px;
+    color: var(--muted2);
+    padding: 20px 28px;
+    line-height: 1.7;
+  }
+
+  /* ─── MODAL ─── */
+  .modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(12,11,9,0.94);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(6px);
+  }
+
+  .modal-bg.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    max-width: 620px;
+    width: 100%;
+    max-height: 82vh;
+    overflow-y: auto;
+    padding: 52px 44px;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform 0.3s;
+  }
+
+  .modal-bg.open .modal { transform: translateY(0); }
+
+  .modal::-webkit-scrollbar { width: 2px; }
+  .modal::-webkit-scrollbar-thumb { background: var(--gold); }
+
+  .modal-x {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    width: 32px; height: 32px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .modal-x:hover { border-color: var(--gold); color: var(--gold); }
+
+  .modal-tag { display: inline-block; margin-bottom: 20px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; }
+  .modal-hook { font-family: 'DM Serif Display', serif; font-size: 21px; line-height: 1.4; color: var(--text); margin-bottom: 28px; }
+  .modal-line { width: 36px; height: 1px; background: var(--gold); margin-bottom: 28px; }
+
+  .modal-body {
+    font-size: 13px;
+    color: var(--muted2);
+    line-height: 2;
+    white-space: pre-line;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 48px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
     .metrics { grid-template-columns: 1fr; }
-    .script-grid { grid-template-columns: 1fr; }
-    .breakdown-item { grid-template-columns: 1fr; }
-    .breakdown-key { padding-bottom: 2px; border-bottom: none; color: #B5841A; }
-    .results-strip { grid-template-columns: 1fr; }
+    .metric { border-right: none; border-bottom: 1px solid var(--border); }
+    .metric:last-child { border-bottom: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .case-row { grid-template-columns: 1fr; }
+    .case-key { border-right: none; border-bottom: 1px solid var(--border); padding: 14px 20px 10px; }
+    .case-val { padding: 12px 20px 20px; }
+    .hook-layer { grid-template-columns: 1fr; }
+    .hook-layer-key { border-right: none; border-bottom: 1px solid var(--border); padding: 14px 20px 10px; }
+    .hook-layer-val { padding: 12px 20px 20px; }
+    .modal { padding: 40px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- HEADER -->
-  <h1>Mustafa Waly</h1>
-  <p class="subtitle">Content Strategist · Performance Copywriter · Creative Director</p>
-  <p class="bio">I engineer conversion-focused content systems for personal brands and e-commerce in Arabic and English. My framework is built on 5+ years of music production — the same hook construction, pacing, and retention mechanics that scaled my music to 13,900+ Spotify streams drive every piece of copy I produce.</p>
-  <p class="bio" style="margin-top:10px;">Currently directing content strategy and copy at <strong style="color:#fff;">ABZ Content</strong> — Alexandria, Egypt.</p>
-  <div class="contact">
-    <a href="mailto:getwaly@gmail.com">getwaly@gmail.com</a>
-    <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
-    <a href="Mustafa_Khalifa_CV.pdf" target="_blank">Download CV</a>
+<!-- TOP BAR -->
+<div class="wrap">
+  <div class="topbar">
+    <div class="topbar-logo">Mustafa Waly</div>
+    <div class="topbar-tag">Content Portfolio · 2024</div>
   </div>
+</div>
 
-  <!-- METRICS -->
-  <div class="metrics">
-    <div class="metric-card">
-      <div class="metric-number">13,900+</div>
-      <div class="metric-label">Spotify streams — self-released Arabic rap, zero paid promotion</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-number">35%</div>
-      <div class="metric-label">TikTok save-to-like ratio on ABZ client content — above platform average</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-number">15–25%</div>
-      <div class="metric-label">Estimated CTR lift on paid social ad copy rewrites</div>
+<!-- HERO -->
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-eyebrow">Performance Copywriter & Content Strategist</div>
+    <h1 class="hero-name">Mustafa<br><em>Waly</em></h1>
+    <div class="hero-role">Content Writer · Copywriter · Content Director</div>
+    <p class="hero-bio">
+      I build <strong>conversion focused content systems</strong> for personal brands, coaches, and e-commerce in Arabic. My framework pulls from the same hook construction, pacing, and retention mechanics I used to grow my music to <strong>13,900+ Spotify streams</strong>  now applied to every script, caption, and campaign I touch.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:getwaly@email.com">getwaly@email.com</a>
+      <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
     </div>
   </div>
+</div>
 
+<!-- METRICS -->
+<div class="wrap" style="padding:0;">
+  <div class="metrics" style="border-bottom:1px solid var(--border); border-top:1px solid var(--border);">
+    <div class="metric">
+      <div class="metric-n">13,900+</div>
+      <div class="metric-desc">Spotify streams on self released Arabic rap zero paid promotion</div>
+    </div>
+    <div class="metric">
+      <div class="metric-n">35%</div>
+      <div class="metric-desc">TikTok save to like ratio on client content above platform average</div>
+    </div>
+    <div class="metric">
+      <div class="metric-n">15–25%</div>
+      <div class="metric-desc">CTR lift on paid social ad copy rewrites for personal brand clients</div>
+    </div>
+  </div>
+</div>
 
-  <!-- ═══════════════════════════════════════════
-       ASSET 01 — PERSONAL BRAND SCRIPTS
-  ════════════════════════════════════════════ -->
+<!-- SERVICES -->
+<div class="wrap">
   <div class="section">
-    <div class="section-label">Asset 01</div>
-    <div class="section-title">Personal Brand Script — Career Profiling Campaign</div>
-    <div class="section-desc">Client: Shimaa (Career Coach) · Platform: Short-form video · Language: Arabic · ABZ Content</div>
-    <hr class="divider">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">What I Do</h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-name">Copywriting</div>
+        <div class="service-desc">Ad copy, captions, and landing page text engineered around the psychology of Arabic speaking audiences built to stop the scroll and push action.</div>
+      </div>
+      <div class="service">
+        <div class="service-name">Script Writing</div>
+        <div class="service-desc">Short form and long form video scripts with structured hooks, retention mechanics, and CTAs for TikTok, YouTube, and Reels.</div>
+      </div>
+      <div class="service">
+        <div class="service-name">Content Strategy</div>
+        <div class="service-desc">Content systems mapped to audience awareness levels cold, warm, retargeting with pillar structure, posting cadence, and brief templates.</div>
+      </div>
+      <div class="service">
+        <div class="service-name">Content Direction</div>
+        <div class="service-desc">Leading content teams end to end: ideation, briefing, quality control, and performance review. Currently directing content at ABZ Content.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div class="script-grid">
-      <div class="script-card">
-        <div class="tag">Script A — Variant 1</div>
-        <div class="script-text"><span class="highlight">أصعب إحساس في الشغل
-مش إنك تكون مضغوط.</span>
+<!-- HOOK BREAKDOWN -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Hook Anatomy</h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="hook-anatomy">
+      <div class="hook-text">
+        <div class="hook-quote">أكبر تهديد لشركتك مش المنافس أكبر تهديد هو الـ Blind spots اللي في طريقتك إنت</div>
+      </div>
+      <div class="hook-layers">
+        <div class="hook-layer">
+          <div class="hook-layer-key">Pattern Interrupt</div>
+          <div class="hook-layer-val">The expected threat is competition. Naming an internal, invisible enemy breaks that assumption immediately — the reader can't scroll past a threat they didn't know existed.</div>
+        </div>
+        <div class="hook-layer">
+          <div class="hook-layer-key">Identity Signal</div>
+          <div class="hook-layer-val">Speaks directly to a CEO or founder who considers themselves successful — the word "طريقتك إنت" makes the threat personal, not generic.</div>
+        </div>
+        <div class="hook-layer">
+          <div class="hook-layer-key">Stakes Statement</div>
+          <div class="hook-layer-val">The implication is clear: your own thinking patterns could be quietly destroying what you built. High stakes, no melodrama.</div>
+        </div>
+        <div class="hook-layer">
+          <div class="hook-layer-key">Open Loop</div>
+          <div class="hook-layer-val">What are those blind spots? How would I even know I have them? The hook creates a question the brain can't close without watching the content.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Performance Case · ABZ Content</h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="case-table">
+      <div class="case-row">
+        <div class="case-key">Problem</div>
+        <div class="case-val">Client was running personal brand content with generic openers and benefit first messaging on cold audiences no hook structure, no awareness-stage differentiation.</div>
+      </div>
+      <div class="case-row">
+        <div class="case-key">Decision</div>
+        <div class="case-val">Rewrote content and ad copy strategy around intent-matched hooks and a <strong>problem → identity → CTA</strong> sequence, with separate copy variants for cold, warm, and retargeting audiences.</div>
+      </div>
+      <div class="case-row">
+        <div class="case-key">Execution</div>
+        <div class="case-val">Restructured caption copy across 3 content pillars. Rewrote paid ad hooks by audience temperature. Built a brief template enforcing the new structure across all future output.</div>
+      </div>
+      <div class="case-row">
+        <div class="case-key">Outcome</div>
+        <div class="case-val">
+          Top-performing TikTok: <span class="stat">6,800+ likes · 2,450+ saves · 35% save to like ratio.</span><br>
+          Paid social CTR improved <span class="stat">15–25%</span> across restructured campaigns.<br>
+          Revision cycles cut by <span class="stat">30%</span> within the first quarter.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SELECTED WORK -->
+<div class="wrap">
+  <div class="section" style="border-bottom:none;">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Selected Scripts</h2>
+      <div class="section-header-line"></div>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn on" onclick="filter(this,'all')">All</button>
+      <button class="filter-btn" onclick="filter(this,'lead')">Leadership & B2B</button>
+      <button class="filter-btn" onclick="filter(this,'yt')">YouTube Scripts</button>
+      <button class="filter-btn" onclick="filter(this,'cre')">Creator Economy</button>
+      <button class="filter-btn" onclick="filter(this,'car')">Career Branding</button>
+    </div>
+
+    <div class="work-grid" id="grid"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="wrap">
+  <footer>
+    <div class="footer-name">Mustafa Waly</div>
+    <div class="footer-copy">getwaly@email.com</div>
+  </footer>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeBg(event)">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="mTag"></div>
+    <div class="modal-hook" id="mHook"></div>
+    <div class="modal-line"></div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+const pieces = [
+  {
+    cat: 'cre', tag: 'Creator Economy', tagCls: 'tag-cre',
+    hook: 'انت مش Shadowbanned وبطل تضحك على نفسك',
+    preview: 'الخوارزمية مش ضدك. الخوارزمية بتوفر على الناس مجهود إنهم يشوفوا شئ مكرر.',
+    body: `كل يوم تفتح الاحصائيات وتلاقي الريتش واقع فتقول الخوارزمية ضدي
+الخوارزمية مش ضدك
+انت بس سهل تتنسي
+
+خليني اسألك سؤال رخم شوية
+لو بكرة الصبح قررت تمسح اكونتاتك وماتنزلش حاجة تاني ابدا
+كام واحد هياخد باله
+
+صفر
+
+عشان انت طالع زيك زي غيرك
+نفس الاضاءة المترتبة
+نفس السكريبت المحفوظ
+نفس الطريقة اللي مفيهاش روح
+
+الناس بتشوفك وتشوف عشرين زيك في نفس الدقيقة
+لو انت مكانهم هتفتكر مين فيكوا
+
+الخوارزمية مش بتعاقبك
+الخوارزمية بتوفر على الناس مجهود إنهم يشوفوا شئ مكرر
+
+انت مش محظور
+انت بس محتاج تبطل تكون نسخة`
+  },
+  {
+    cat: 'cre', tag: 'Creator Economy', tagCls: 'tag-cre',
+    hook: 'كل معلومة زيادة بتحشرها في الفيديو بتقتل بيها مشاهداتك',
+    preview: 'انت مقتنع إنك بتفيدهم — بس هما مقتنعين إنك اتقل حد ظهرلهم النهارده.',
+    body: `انت مقتنع إنك طالع تديهم الخلاصة وتفيدهم
+بس هما مقتنعين إنك اتقل حد ظهرلهم النهارده
+
+واحد راجع من شغله هلكان ودماغه مقفولة
+ماسك الموبايل على السرير عشان يفصل
+عشان يهرب من مديره ومن ضغط يومه ومن حياته عموما
+
+يقوم طالعله انت
+عامل فيها المدرس اللي بيقوله ورقة وقلم وركز معايا
+
+هو مش فاتح تيك توك عشان ياخد ماجستير
+هو فاتح عشان يتبنج
+
+كل ما بتحاول تكون مفيد بزيادة بتخنقه اكتر
+لحد ما يكره يشوف وشك
+
+انت بتلعب لعبة غلط في المكان الغلط
+طول ما انت بتعاملهم كطلبة
+هيفضلوا يهربوا من حصتك`
+  },
+  {
+    cat: 'cre', tag: 'Creator Economy', tagCls: 'tag-cre',
+    hook: 'عندك مية ألف متابع  طب بتكسب كام من كل الهيصة دي؟',
+    preview: 'لو بتجيب ملايين المشاهدات ومفيش فلوس بتدخل، فانت مابتبنيش بزنس.',
+    body: `عظيم جدا عندك مية ألف متابع
+فيديوهاتك بتضرب فيوز والكومنتات مابتوقفش
+
+طب سؤال
+بتكسب كام من كل الهيصة دي
+رصيدك في البنك زاد ولا لسه زي ما هو
+
+عشان لو بتجيب ملايين المشاهدات ومفيش فلوس بتدخل
+فانت مابتبنيش بزنس
+
+عارف المشكلة فين
+إنك بنيت جمهور متعود ياخد منك الضحكة والتسلية ويمشي
+جمهور مش مستعد يدفع جنيه في اي حاجة بتقدمها
+
+النجاح مش إنك تخلي الناس تتلم وتصقفلك
+النجاح إنك تلاقي اللي يدفع تمن اسمك`
+  },
+  {
+    cat: 'cre', tag: 'Creator Economy', tagCls: 'tag-cre',
+    hook: 'جمهورك مش غبي  جمهورك بس زهقان',
+    preview: 'الناس بقت بتشم ريحة التصنع من اول فريم. المشكلة إنك بقيت متوقع بزيادة.',
+    body: `جمهورك مش غبي ومبقاش ينضحك عليه بهوك رخيص
+جمهورك بس زهقان
+
+تخيل واحد بقاله ساعتين بيسكرول في الشاشة لفوق
+شاف كل النصايح
+عرف كل الاسرار
+وحفظ كل الدخلات المحفوظة
+
+و تيجي انت
+بنفس الدخلة اللي شافها تلاتين مرة النهارده
+نفس حركة الايد
+نفس نبرة الصوت المصطنعة
+
+الناس بقت بتشم ريحة التصنع من اول فريم
+ولو حس انك مجرد نسخة من حد تاني هيعدي عليك كأنك هوا
+
+المشكلة عمرها ما كانت في إن انتباه الناس قل
+المشكلة إنك بقيت متوقع بزيادة
+والناس بتكره الملل`
+  },
+  {
+    cat: 'yt', tag: 'YouTube Script', tagCls: 'tag-yt',
+    hook: 'Channel بنص مليون سابسكرايبر — بيخسر 40% من المشاهدين في أول 30 ثانية',
+    preview: 'مش رأي. مش نظرية. ده data. والأخطر إن الـ channel ده ممكن يكون بتاعك.',
+    body: `شايف الـ Graph ده؟
+ده channel عنده نص مليون سابسكرايبر. وبيخسر 40% من المشاهدين في أول 30 ثانية.
+مش رأي. مش نظرية. ده data.
+
+والأخطر؟ إن الـ channel ده ممكن يكون بتاعك.
+مش عشان المحتوى وحش. عشان الـ structure مكسور من الجملة الأولى.
+
+في كل فيديو فايرال في التاريخ في نظام واحد. اسمه الـ Retention Triangle.
+
+المرحلة الأولى  الـ 30 ثانية دي محكمة:
+الـ Re-hook: في أول 3 ثواني توقف الـ scroll
+الـ Proof: تأكدله إن اللي وعدته موجود
+الـ Escalation: ارفع سقف التوقع لدرجة إنه مش يقدر يمشي
+
+المرحلة التانية  الـ Retention Engine:
+في دماغ المشاهد حاجة اسمها Zeigarnik Effect.
+الدماغ مش بتقدر تسيب حاجة ناقصة.
+افتحلهم مشكلة من غير حل → هيفضلوا يدوروا.
+الحل: Micro Re-hooks كل 45 ثانية. بدون استثناء.
+
+المرحلة التالتة  الـ Outro:
+لما تقول "أتمنى يكون الفيديو عجبكم" الدماغ بيقفل.
+الـ Outro الصح: ماتعملوش خالص. لما القيمة تخلص، الفيديو يخلص.`
+  },
+  {
+    cat: 'lead', tag: 'Leadership · B2B', tagCls: 'tag-lead',
+    hook: 'قمة الهرم الإداري مكان هادي جداً  أحياناً هادي أكتر من اللازم',
+    preview: 'كل ما بتكبر في البوزيشن، الدايرة اللي بتقدر تتكلم معاها بشفافية بتصغر.',
+    body: `كل ما بتكبر في البوزيشن، الدايرة اللي بتقدر تتكلم معاها بشفافية بتصغر.
+الناس بتبدأ تقولك اللي إنت عايز تسمعه، مش اللي المفروض يتقال.
+
+في Psychology of Leadership، إحنا بنكسر العزلة دي.
+
+جمعنا صناع قرار، Founders وCEOs في مكان واحد.
+الفكرة مش إننا نعلمك إدارة، إنت بالفعل ناجح.
+الفكرة إنك تقعد على ترابيزة مع ناس حجم مسؤولياتهم زي حجم مسؤولياتك.
+
+بنقسمكم لفرق من 4 أشخاص بيمثلوا أنماط قيادية مختلفة.
+تحلوا مشاكل حقيقية وتشوفوا قراراتكم من زوايا مكنتوش شايفينها.
+
+القيادة الحقيقية بتنضج لما تتحدى أفكارك مع عقول في نفس وزنك.`
+  },
+  {
+    cat: 'lead', tag: 'Leadership · B2B', tagCls: 'tag-lead',
+    hook: 'أكبر تهديد لشركتك مش المنافس أكبر تهديد هو الـ Blind spots اللي في طريقتك إنت',
+    preview: 'النجاح المستمر بيخلق نوع من الثقة المفرطة. بتبدأ تعتمد على نفس الـ Pattern اللي نجحك زمان.',
+    body: `النجاح المستمر بيخلق نوع من الثقة المفرطة.
+بتبدأ تعتمد على نفس الـ Pattern اللي نجحك زمان، وتتجاهل إن اللعبة بتتغير.
+
+كورس Psychology of Leadership متصمم عشان يكشف النقط العميا دي.
+
+إحنا مبنقدمش منهج أكاديمي.
+إحنا بنحطك في محاكاة واقعية مع قادة زيك.
+بنحلل تركيبة الـ 4 أنماط القيادية ونشكل فرق من 4 أفراد تواجه أزمات معقدة.
+
+بتكتشف هنا إن طريقتك في القيادة هي مجرد وجهة نظر.
+ولما تحتك بطريقة تفكير CEO تاني، بتشوف أبعاد جديدة لقراراتك.
+
+أعظم استثمار للقائد هو إنه يعيد اكتشاف نفسه من خلال عقول موازية ليه.`
+  },
+  {
+    cat: 'lead', tag: 'Leadership · B2B', tagCls: 'tag-lead',
+    hook: 'إنت مش بتدير بيزنس إنت بتدير سايكولوجية الناس اللي بتمشي البيزنس',
+    preview: 'الأرقام والاستراتيجيات سهلة. اللي بيفرق قادة الصف الأول هو قدرتهم على قراية الدوافع النفسية.',
+    body: `الأرقام والاستراتيجيات سهلة، أي حد ممكن يتعلمها.
+بس اللي بيفرق قادة الصف الأول هو قدرتهم على قراية الدوافع النفسية.
+وراء كل قرار، وراء كل مقاومة من فريقهم.
+
+في Psychology of Leadership، بندخل في العمق ده.
+
+إنت هتقعد مع Founders ومديرين كبار.
+تحللوا مواقف حقيقية وتفككوا التعقيد النفسي للإدارة.
+
+من خلال تقسيمكم لـ 4 شخصيات قيادية في فرق عمل،
+هتشوف عملياً إزاي اختلاف الدوافع بيغير مسار أي قرار.
+
+القيمة هنا مش في اللي بتسمعه.
+القيمة في الاحتكاك اللي بيحصل بينك وبين قادة غيرك على نفس الترابيزة.
+
+القيادة فن فهم البشر، قبل ما تكون فن تحقيق الأرباح.`
+  },
+  {
+    cat: 'lead', tag: 'Leadership · B2B', tagCls: 'tag-lead',
+    hook: 'أصعب قرار على أي Founder ناجح إنه يعترف إنه محتاج يشوف الأمور بطريقة تانية',
+    preview: 'الإيجو هو الضريبة اللي بندفعها للنجاح. بيحمينا في البداية، بس بيحجمنا بعدين.',
+    body: `الإيجو هو الضريبة اللي بندفعها للنجاح.
+بيحمينا في البداية، بس بيحجمنا بعدين.
+
+في مساحات معينة، إنت محتاج تنزل سلاحك وتقعد مع ناس فاهمة حجم الضغط اللي عليك.
+
+ده الهدف من Psychology of Leadership.
+مجتمع مغلق على قيادات بتشارك تجاربها الحقيقية بدون تجميل.
+
+بنشتغل على تقسيم المشاركين لـ 4 أنماط.
+ونخلق ديناميكية فرق من 4 أشخاص بتحل مشاكل حية.
+
+بتتعلم من طريقة تفكير اللي جنبك.
+من هدوءه في الأزمة.
+ومن زاوية رؤيته اللي مختلفة عنك تماماً.
+
+القائد الذكي هو اللي بيخلق لنفسه بيئة تخليه دايماً التلميذ، مهما كبر منصبه.`
+  },
+  {
+    cat: 'lead', tag: 'Leadership · B2B', tagCls: 'tag-lead',
+    hook: 'الإدارة هي إنك تحل المشكلة القيادة هي إنك تفهم ليه المشكلة حصلت من الأساس',
+    preview: 'كل يوم بتاخد عشرات القرارات. بس كام مرة وقفت عشان تفهم البعد النفسي للقرارات دي؟',
+    body: `كل يوم بتاخد عشرات القرارات عشان تمشي الشغل.
+بس كام مرة وقفت عشان تفهم البعد النفسي للقرارات دي؟
+
+كورس Psychology of Leadership مش بيعلمك إزاي تدير.
+هو بيعمل Shift لطريقة تفكيرك كقائد.
+
+القيمة الحقيقية بتتخلق لما نجمع CEOs وأصحاب شركات في قاعة واحدة.
+ونصنف أنماطهم القيادية الـ 4.
+ونحطهم في فرق بتحاكي تحديات السوق الصعبة.
+
+الحوارات الجانبية، الاختلاف في الرؤى، وطريقة حل الأزمات بين العقول دي
+هي دي المادة العلمية الحقيقية.
+
+الكورس ده رحلة جوا عقلك إنت الأول.
+عشان تقود غيرك صح، لازم تفهم نفسك بعمق.`
+  },
+  {
+    cat: 'car', tag: 'Career Branding', tagCls: 'tag-car',
+    hook: 'أصعب إحساس في الشغل إنك بتجري بكل سرعتك بس في الاتجاه الغلط',
+    preview: 'سنين بنحاول نغيّر نفسنا عشان نليق على مكان. بدل ما ندور على المكان اللي يليق علينا.',
+    body: `أصعب إحساس في الشغل
+مش إنك تكون مضغوط.
 أصعب إحساس
 إنك تكون بتجري بكل سرعتك
 بس في الاتجاه الغلط.
@@ -135,171 +1014,96 @@
 الحقيقة إن المشكلة
 مش في قدراتك.
 المشكلة إنك لسه
-ما فهمتش نفسك كفاية.</div>
-      </div>
-      <div class="script-card">
-        <div class="tag">Script B — Variant 2</div>
-        <div class="script-text"><span class="highlight">عمرك سألت نفسك
+ما فهمتش نفسك كفاية.
+
+رحلة Career Profiling  ٥ جلسات.
+بنحلل فيهم شخصيتك بعمق.
+ونفهم إيه اللي بيشغّل طاقتك فعلًا.
+وإيه اللي بيستنزفك من غير ما تحس.
+
+وفي الآخر هتطلع بخريطة واضحة لنفسك.
+مش بس خريطة للشغل 
+خريطة تقولك فين المكان اللي هتبدع فيه فعلًا.`
+  },
+  {
+    cat: 'car', tag: 'Career Branding', tagCls: 'tag-car',
+    hook: 'ليه في ناس بتنجح في شغلها كل مرة وكأن الموضوع طبيعي بالنسبة لهم؟',
+    preview: 'الموضوع مش حظ. ومش إنهم أذكى. الفرق إنهم فاهمين نفسهم.',
+    body: `عمرك سألت نفسك
 ليه في ناس بتنجح في شغلها كل مرة
-وكأن الموضوع طبيعي بالنسبة لهم؟</span>
+وكأن الموضوع طبيعي بالنسبة لهم؟
 
 الموضوع مش حظ.
 ومش إنهم أذكى.
-الفرق إنهم
-فاهمين نفسهم.
+الفرق إنهم فاهمين نفسهم.
 
-عارفين إيه اللي بيحفزهم
+عارفين إيه اللي بيحفزهم.
 وإيه اللي بيطفيهم.
-وعارفين يختاروا
-البيئة اللي بتكبرهم.</div>
-      </div>
-    </div>
+وعارفين يختاروا البيئة اللي بتكبرهم.
 
-    <div class="breakdown">
-      <div class="breakdown-title">Copy Strategy — What Was Done & Why</div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Hook mechanism</div>
-        <div class="breakdown-val">Both scripts open with a pattern interrupt that names a feeling the audience already has but hasn't articulated — triggering immediate identity recognition before any product mention.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Variant A logic</div>
-        <div class="breakdown-val">Opens with contrast: "not pressure — wrong direction." Targets audience who are already working hard but getting nowhere. Reframes the problem from effort to self-knowledge.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Variant B logic</div>
-        <div class="breakdown-val">Opens with a rhetorical question that seeds curiosity and mild envy. Removes luck and intelligence as variables — leaving self-awareness as the only differentiator. Positions the client as the solution to a specific gap.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">CTA structure</div>
-        <div class="breakdown-val">Both close with reframing: not "buy a session" but "you might need a compass, not a new road." Lowers resistance by offering clarity instead of commitment.</div>
-      </div>
-    </div>
+المشكلة إن أغلبنا عمره ما اتعلم يعمل كده.
 
-    <div class="pills" style="margin-top:16px;">
-      <span class="pill gold">Pattern Interrupt</span>
-      <span class="pill gold">Identity Signal</span>
-      <span class="pill gold">A/B Variant Testing</span>
-      <span class="pill">Arabic Conversion Copy</span>
-      <span class="pill">Personal Brand</span>
-      <span class="pill">Short-Form Video Script</span>
-    </div>
-  </div>
+في رحلة Career Profiling
+بنوقف لحظة ونبدأ نفهم نفسنا بجد.
 
+من خلال تحليل شخصيتك ودوافعك وقيمك في الشغل.
+خطوة بخطوة هتبني لنفسك Career Map.
+خريطة بتوضح نقط قوتك الحقيقية وأفضل بيئة تشتغل فيها.
 
-  <!-- ═══════════════════════════════════════════
-       ASSET 02 — LONG-FORM RETENTION SCRIPT
-  ════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-label">Asset 02</div>
-    <div class="section-title">Long-Form Script — Audience Retention Psychology</div>
-    <div class="section-desc">Client: ABZ Content (owned channel) · Platform: YouTube · Language: Arabic</div>
-    <hr class="divider">
+عشان تتحرك في طريق يشبهك فعلًا.`
+  }
+];
 
-    <div class="longform">
-      <div class="script-excerpt">
-<em>اللحظة اللي المشاهد بيسحب فيها الفيديو بتاعك لفوق مش هي اللحظة اللي خد فيها القرار.</em>
-القرار بيتاخد قبلها بثانيتين كاملين.
-الثانيتين دول هما أخطر مساحة زمنية في أي فيديو على يوتيوب.
+let current = 'all';
 
-<em>المشكلة إنك فاكر إن المشاهد بيشوفك كشخص طالع يتكلم معاه.</em>
-الحقيقة هو بيشوفك كمجهود —
-عقله بيعمل حسبة رياضية في جزء من الثانية:
-هل اللي هشوفه هنا يستاهل إني أدفع من انتباهي؟
-</div>
+function filter(btn, cat) {
+  current = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
 
-      <div class="breakdown-title" style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:#B5841A;margin-bottom:16px;">Script Architecture — Retention Engineering Applied</div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Opening hook</div>
-        <div class="breakdown-val">Opens with a counterintuitive reframe: the decision to leave happens 2 seconds before the swipe. Creates cognitive dissonance — the viewer thought they were in control. They weren't.</div>
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  const list = current === 'all' ? pieces : pieces.filter(p => p.cat === current);
+  list.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'work-card';
+    d.onclick = () => openModal(p);
+    d.innerHTML = `
+      <div class="work-card-top">
+        <span class="work-tag ${p.tagCls}">${p.tag}</span>
+        <span class="work-idx">${String(i+1).padStart(2,'0')}</span>
       </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Information gap</div>
-        <div class="breakdown-val">Script deliberately withholds the "3-step system" until deep into the video — using named micro-promises ("the third step is the most dangerous") to sustain forward momentum without revealing the payoff early.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Self-referential structure</div>
-        <div class="breakdown-val">The script teaches retention mechanics while simultaneously applying them — the viewer experiences the framework as they learn it. This meta-layer dramatically increases perceived credibility and watch time.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Pattern interrupt timing</div>
-        <div class="breakdown-val">Breaks introduced every 20–30 seconds via tonal shifts, reframes, and direct audience address — matching the neurological attention reset window studied in behavioral psychology.</div>
-      </div>
-    </div>
+      <div class="work-hook">${p.hook}</div>
+      <div class="work-preview">${p.preview}</div>
+      <div class="work-cta">Read script &rarr;</div>`;
+    grid.appendChild(d);
+  });
+}
 
-    <div class="pills" style="margin-top:16px;">
-      <span class="pill gold">Retention Engineering</span>
-      <span class="pill gold">Information Gap Theory</span>
-      <span class="pill gold">Self-Referential Narrative</span>
-      <span class="pill">Long-Form YouTube Script</span>
-      <span class="pill">Educational Content</span>
-      <span class="pill">Arabic</span>
-    </div>
-  </div>
+function openModal(p) {
+  document.getElementById('mTag').className = `modal-tag ${p.tagCls}`;
+  document.getElementById('mTag').textContent = p.tag;
+  document.getElementById('mHook').textContent = p.hook;
+  document.getElementById('mBody').textContent = p.body;
+  document.getElementById('modalBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-  <!-- ═══════════════════════════════════════════
-       ASSET 03 — PERFORMANCE CASE
-  ════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="section-label">Asset 03</div>
-    <div class="section-title">Performance Case — ABZ Content TikTok</div>
-    <div class="section-desc">Client work · Platform: TikTok · Role: Script + Content Strategy · ABZ Content</div>
-    <hr class="divider">
+function closeBg(e) {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+}
 
-    <div class="breakdown" style="margin-top:0;">
-      <div class="breakdown-title">Case Breakdown</div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Problem</div>
-        <div class="breakdown-val">Client content was generating views but low save and share rates — indicating audiences were watching passively without perceiving the content as useful or worth returning to.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Decision</div>
-        <div class="breakdown-val">Restructured the script around high-utility information architecture: front-loaded the hook with a counterintuitive claim, embedded actionable frameworks mid-video, and closed with a callback that reinforced retention value.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Execution</div>
-        <div class="breakdown-val">Wrote and directed the content script for the ABZ Content TikTok channel — applying the same pacing and retention mechanics developed through 5+ years of music production to short-form video structure.</div>
-      </div>
-      <div class="breakdown-item">
-        <div class="breakdown-key">Outcome</div>
-        <div class="breakdown-val">Top-performing video on the channel to date. Save rate signals high-utility content — audiences bookmarking to return, not just consuming passively.</div>
-      </div>
-    </div>
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    <div class="results-strip">
-      <div class="result-cell">
-        <div class="result-num">6,800+</div>
-        <div class="result-label">Likes</div>
-      </div>
-      <div class="result-cell">
-        <div class="result-num">2,450+</div>
-        <div class="result-label">Saves — 35% save-to-like ratio</div>
-      </div>
-      <div class="result-cell">
-        <div class="result-num">1,200+</div>
-        <div class="result-label">Shares</div>
-      </div>
-    </div>
-
-    <div class="pills" style="margin-top:16px;">
-      <span class="pill gold">Verified Client Results</span>
-      <span class="pill gold">35% Save-to-Like Ratio</span>
-      <span class="pill">TikTok</span>
-      <span class="pill">Short-Form Script</span>
-      <span class="pill">ABZ Content</span>
-    </div>
-  </div>
-
-
-  <!-- CTA -->
-  <div class="cta">
-    <p>Available for agency roles, freelance strategy, and performance copy engagements.</p>
-    <div class="cta-links">
-      <a href="mailto:getwaly@gmail.com">getwaly@gmail.com</a>
-      <a href="https://linkedin.com/in/mustafa-waly" target="_blank">LinkedIn</a>
-    </div>
-  </div>
-
-</div>
+render();
+</script>
 </body>
 </html>
